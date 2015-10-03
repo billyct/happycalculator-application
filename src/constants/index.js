@@ -1,0 +1,1 @@
+export const SVG_URL = '/dist/icon/sprites.svg';
