@@ -1,7 +1,143 @@
 .calculator {
 
 
-  &__input {
-    border: 1px solid #000080;
+  background-color: #fff;
+  padding: 10px;
+
+  &--controls {
+    margin: 0 0 20px 0;
+  }
+
+  &--input {
+    border: none;
+    border-bottom: 1px solid #000000;
+    height: 60px;
+    font-size: 30px;
+    min-width: 200px;
+  }
+
+  &--button {
+
+
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    margin-right: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0 30px;
+    text-transform: uppercase;
+    border: 1px solid #eee;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
+    &--primary {
+
+      $color-primary : #56B1A7;
+      border: none;
+      background-color: $color-primary;
+      color: #fff;
+
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+
+    &--icon {
+      padding: 0;
+      background-color: transparent;
+      width: 50px;
+      cursor: pointer;
+      box-shadow: 1px 1px 1px #ececec;
+      border-radius: 500px;
+    }
+
+  }
+
+  &__result{
+    font-family: digital;
+    font-size: 60px;
+    height: 80px;
+    line-height: 80px;
+
+  }
+
+  &__formulas {
+    border: 1px dashed #ececec;
+    border-left: 1px solid #3A5BB2;
+
+    &__header {
+
+      border-bottom: 1px dashed #ececec;
+
+      &__button {
+        margin: 10px;
+      }
+
+    }
+
+    &__body {
+
+    }
+  }
+
+  &__formula {
+
+    padding: 5px 10px;
+    //clear: both;
+    border-bottom: 1px solid #ececec;
+    box-shadow: 1px 1px 5px #ececec;
+    display: inline-block;
+    margin: 10px;
+
+    &__name {
+      float: left;
+      height: 50px;
+      line-height: 50px;
+      font-size: 20px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    &__toolbar {
+      float: right;
+
+
+    }
+
+    &__button {
+
+      margin: 5px 0 0 10px;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      padding-top: 2px;
+
+
+    }
+
+
+  }
+
+
+  &-modal {
+
+    &__controls {
+      margin-bottom: 30px;
+    }
+
+    &__title {
+      text-transform: uppercase;
+      font-size: 40px;
+    }
+
+    &__input {
+      width: 100%;
+      font-size: 20px;
+    }
   }
 }

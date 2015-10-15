@@ -7,7 +7,6 @@ import reducers from './reducers';
 
 import App from './containers/App';
 import CalculatorPage from './containers/CalculatorPage';
-import FormulaEditorPage from './containers/FormulaEditorPage';
 
 import { devTools, persistState } from 'redux-devtools'
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
@@ -23,7 +22,9 @@ const finalCreateStore = compose(
 
 store = finalCreateStore(reducers);
 
-
+//<DebugPanel top right bottom>
+//  <DevTools store={store} monitor={LogMonitor} />
+//</DebugPanel>
 //index
 React.render(
   <div>
@@ -32,15 +33,12 @@ React.render(
         <Router>
           <Route path='/' component={CalculatorPage}>
             <Route path='calculator' component={CalculatorPage} />
-            <Route path='formula-editor' component={FormulaEditorPage} />
           </Route>
         </Router>
 
       }
     </Provider>
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
+
   </div>
   ,
   document.getElementById('app')

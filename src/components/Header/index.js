@@ -26,7 +26,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <input type="text"  onKeyDown={this.handleSubmit.bind(this)}/>
+        <input type="text" onKeyDown={this.handleSubmit.bind(this)}/>
       </div>
     )
   }

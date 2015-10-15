@@ -14,11 +14,11 @@ $base-size: 50px;
 
 
 .icon {
-  position: relative;
+  //position: relative;
   display: inline-block;
   width: 25px;
   height: 25px;
-  overflow: hidden;
+  //overflow: hidden;
   fill: currentColor;
 
 
@@ -32,6 +32,9 @@ $base-size: 50px;
     -ms-transform: translate(0.5px, -0.3px); /* Crisp fix for IE */
   }
 
+  &--s {
+    @include size($base-size - 30);
+  }
 
   &--m {
     @include size($base-size);

@@ -1,62 +1,99 @@
-import React, {Component} from 'react';
-import happycalculator from 'happycalculator';
+import React, {Component, PropTypes} from 'react';
+
+import Modal from '../Modal';
 
 
 import './formulaEditor.scss';
 
 
-export default class FormulaEditor extends Component {
+class FormulaEditor extends Component {
 
   constructor(props, context) {
     super(props, context);
+
     this.state = {
-      result : 0
-    }
+      name : '',
+      content: '',
+      modalIsOpen: this.props.isOpen
+    };
   }
 
-  handleSubmit(e) {
-    const text = e.target.value.trim();
+  closeModal() {
+    this.setState({
+      modalIsOpen: false
+    })
+  }
 
-    if (e.which === 13) {
-      try {
-        this.setState({
-          result : happycalculator.calculate(text)
-        });
-      } catch(error) {
-        this.setState({
-          result : error.message
-        });
-      }
+  componentWillReceiveProps(newProps) {
+    console.log(newProps);
+    this.setState({
+      modalIsOpen : newProps.isOpen
+    });
+  }
 
+  handleSubmit() {
+    let formula = {
+      name : this.refs.formulaName.getDOMNode().value,
+      content : this.refs.formulaContent.getDOMNode().value
     }
+
+    this.props.save(formula);
+    this.setState({
+      modalIsOpen: false
+    });
   }
 
   render() {
 
     const block = 'calculator';
+    const modalBlock = 'calculator-modal';
 
     return (
-
-      <div className={block}>
-
-        <div className={`${block}__header`}>
+      <Modal isOpen={this.state.modalIsOpen}>
+        <div className={`${block}--controls ${modalBlock}__controls`}>
+          <h1 className={`${modalBlock}__title`}>add a formula</h1>
+        </div>
+        <div className={`${block}--controls ${modalBlock}__controls`}>
           <input
-            className={`${block}__input`}
-            onKeyDown={this.handleSubmit.bind(this)}
+            ref="formulaName"
+            className={`${block}--input ${modalBlock}__input`}
+            placeholder='Please Input Formula Name'
             type="text"/>
         </div>
 
-        <div className={`${block}__body`}>
-          <div className={`${block}__result`}>
-            <h1>{this.state.result}</h1>
-          </div>
+        <div className={`${block}--controls ${modalBlock}__controls`}>
+          <input
+            ref="formulaContent"
+            className={`${block}--input ${modalBlock}__input`}
+            placeholder='Please Input Formula EXAMPLE: a+2+b'
+            type="text"/>
         </div>
-      </div>
 
+        <div className={`${block}--controls ${modalBlock}__controls`}>
+          <button className={`${block}--button ${block}--button--primary`}
+                  onClick={this.handleSubmit.bind(this)}>
+            save
+          </button>
+
+          <button className={`${block}--button`}
+                  onClick={this.closeModal.bind(this)}>
+            cancel
+          </button>
+        </div>
+      </Modal>
     );
   }
 }
 
+FormulaEditor.defaultProps = {
+  isOpen: false
+};
+
+FormulaEditor.propTypes = {
+  isOpen : PropTypes.bool.isRequired,
+  save : PropTypes.func.isRequired
+}
+
+export default FormulaEditor;
 
 
-export default Calculator;
