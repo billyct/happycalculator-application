@@ -1,12 +1,16 @@
 import React from 'react';
 import {createStore, compose} from 'redux';
 import {Provider} from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router, Route, Redirect} from 'react-router';
+
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+let history = createBrowserHistory()
 
 import reducers from './reducers';
 
 import App from './containers/App';
 import CalculatorPage from './containers/CalculatorPage';
+import FormulaPage from './containers/FormulaPage';
 
 import { devTools, persistState } from 'redux-devtools'
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
@@ -27,19 +31,19 @@ store = finalCreateStore(reducers);
 //</DebugPanel>
 //index
 React.render(
-  <div>
-    <Provider store={store}>
-      {() =>
-        <Router>
-          <Route path='/' component={CalculatorPage}>
-            <Route path='calculator' component={CalculatorPage} />
-          </Route>
-        </Router>
+  <Provider store={store}>
+    {() =>
+      <Router history={history}>
+        <Route path='/' compnent={App}>
+          <Route path='calculator' component={CalculatorPage} />
+          <Route path='formulas/create' component={FormulaPage} />
+          <Route path='formulas/:id' component={FormulaPage} />
+        </Route>
+        <Redirect from="/" to="/calculator"/>
+      </Router>
 
-      }
-    </Provider>
-
-  </div>
+    }
+  </Provider>
   ,
   document.getElementById('app')
 );

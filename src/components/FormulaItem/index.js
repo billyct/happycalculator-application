@@ -6,7 +6,11 @@ import ClearFix from '../ClearFix';
 class FormulaItem extends Component {
 
   handleRemove(){
-    this.props.remove(this.props.formula);
+    this.props.removeHandler(this.props.formula);
+  }
+
+  handleEdit(){
+    this.props.editHandler();
   }
 
 
@@ -21,7 +25,8 @@ class FormulaItem extends Component {
           {this.props.formula.name}
         </div>
         <div className={`${block}__formula__toolbar`}>
-          <button className={`${block}--button ${block}--button--icon ${block}__formula__button`}>
+          <button className={`${block}--button ${block}--button--icon ${block}__formula__button`}
+                  onClick={this.handleEdit.bind(this)}>
             <Icon name="edit" size="s"/>
           </button>
           <button className={`${block}--button ${block}--button--icon ${block}__formula__button`}

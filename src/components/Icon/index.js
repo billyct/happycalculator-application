@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {SVG_URL} from '../../constants';
 
 import './icon.scss';
@@ -36,10 +36,10 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
-  spinner: React.PropTypes.string,
-  size: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  className: React.PropTypes.string
+  spinner: PropTypes.string,
+  size: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  className: PropTypes.string
 };
 
 

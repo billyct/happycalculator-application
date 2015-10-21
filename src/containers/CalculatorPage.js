@@ -11,11 +11,13 @@ import ClearFix from '../components/ClearFix';
 import './styles/app.scss';
 
 class CalculatorPage extends Component {
+
   render() {
+
+    const block = 'app';
 
     const {formulas, dispatch} = this.props;
     const actions = bindActionCreators(formulaActions, dispatch);
-    const block = 'app';
 
     return (
       <div className={block}>
@@ -24,10 +26,8 @@ class CalculatorPage extends Component {
           <h1 className={`${block}__title`}>happy calculator</h1>
           <ClearFix/>
         </div>
-
         <Calculator formulas={formulas} actions={actions}/>
       </div>
-
     );
   }
 }

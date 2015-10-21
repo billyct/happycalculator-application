@@ -18,8 +18,8 @@ export default function reducers(state=[{
   switch (action.type) {
 
   case CREATE:
-    //action.data {name, content}
-    stateTemp.push(_.assign({id: uuid()}, action.data.formula));
+    //action.data {id:'', name, content}
+    stateTemp.push(_.assign({}, action.data.formula, {id: uuid()}));
     return stateTemp;
 
   case UPDATE:

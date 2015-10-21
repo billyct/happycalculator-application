@@ -1,4 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+
+import History from 'history';
 
 import Modal from '../Modal';
 
@@ -9,53 +11,58 @@ import './formulaEditor.scss';
 class FormulaEditor extends Component {
 
   constructor(props, context) {
+
     super(props, context);
 
-    this.state = {
-      name : '',
-      content: '',
-      modalIsOpen: this.props.isOpen
-    };
+    this.state =  this.props.formula;
   }
 
-  closeModal() {
-    this.setState({
-      modalIsOpen: false
-    })
+  handleCancel() {
+    this.props.history.pushState(null, `/calculator`);
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log(newProps);
-    this.setState({
-      modalIsOpen : newProps.isOpen
-    });
+  handleChange(e) {
+    let tmp = {};
+    tmp[e.target.name] = e.target.value;
+    this.setState(tmp);
   }
+
 
   handleSubmit() {
-    let formula = {
-      name : this.refs.formulaName.getDOMNode().value,
-      content : this.refs.formulaContent.getDOMNode().value
+
+    const formula = this.state;
+    const {actions} = this.props;
+
+    if (formula.id !== '') {
+      //edit
+      actions.updateFormula(formula);
+    } else {
+      //create
+      actions.createFormula(formula);
     }
 
-    this.props.save(formula);
-    this.setState({
-      modalIsOpen: false
-    });
+
+    this.handleCancel();
   }
 
   render() {
 
+
+    let formula = this.state;
     const block = 'calculator';
     const modalBlock = 'calculator-modal';
 
+
     return (
-      <Modal isOpen={this.state.modalIsOpen}>
+      <Modal isOpen={true}>
         <div className={`${block}--controls ${modalBlock}__controls`}>
           <h1 className={`${modalBlock}__title`}>add a formula</h1>
         </div>
         <div className={`${block}--controls ${modalBlock}__controls`}>
           <input
-            ref="formulaName"
+            value={formula.name}
+            name='name'
+            onChange={this.handleChange.bind(this)}
             className={`${block}--input ${modalBlock}__input`}
             placeholder='Please Input Formula Name'
             type="text"/>
@@ -63,20 +70,23 @@ class FormulaEditor extends Component {
 
         <div className={`${block}--controls ${modalBlock}__controls`}>
           <input
-            ref="formulaContent"
+            onChange={this.handleChange.bind(this)}
+            value={formula.content}
+            name='content'
             className={`${block}--input ${modalBlock}__input`}
             placeholder='Please Input Formula EXAMPLE: a+2+b'
             type="text"/>
         </div>
 
         <div className={`${block}--controls ${modalBlock}__controls`}>
+          <input ref="formulaId" type='hidden' value={formula.id} />
           <button className={`${block}--button ${block}--button--primary`}
                   onClick={this.handleSubmit.bind(this)}>
             save
           </button>
 
           <button className={`${block}--button`}
-                  onClick={this.closeModal.bind(this)}>
+                  onClick={this.handleCancel.bind(this)}>
             cancel
           </button>
         </div>
@@ -85,14 +95,7 @@ class FormulaEditor extends Component {
   }
 }
 
-FormulaEditor.defaultProps = {
-  isOpen: false
-};
 
-FormulaEditor.propTypes = {
-  isOpen : PropTypes.bool.isRequired,
-  save : PropTypes.func.isRequired
-}
 
 export default FormulaEditor;
 

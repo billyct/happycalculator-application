@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router'
 import happycalculator from 'happycalculator';
+
 import Icon from '../Icon';
 import ClearFix from '../ClearFix';
 import Modal from '../Modal';
@@ -9,8 +11,7 @@ import FormulaItem from '../FormulaItem';
 
 import './calculator.scss';
 
-const block = 'calculator';
-const modalBlock = 'calculator-modal';
+
 
 export default class Calculator extends Component {
 
@@ -19,7 +20,6 @@ export default class Calculator extends Component {
     this.state = {
       result : 0,
       input: '',
-      modalIsOpen: false
     }
   }
 
@@ -47,30 +47,28 @@ export default class Calculator extends Component {
   }
 
   handleSubmitByKeyDown(e) {
-
     if (e.which === 13) {
       this.calculate(this.state.input)
     }
   }
 
-
-  openModal() {
-    this.setState({
-      modalIsOpen: true
-    })
+  handleRemoveFormula(formula) {
+    this.props.actions.removeFormula(formula);
   }
 
 
 
   render() {
 
+    let {formulas} = this.props;
+
+    const block = 'calculator';
+
 
     return (
 
       <div className={block}>
 
-        <FormulaEditor isOpen={this.state.modalIsOpen}
-                       save={this.props.actions.createFormula}/>
 
         <div className={`${block}--controls`}>
           <div className={`${block}__result`}>{this.state.result}</div>
@@ -96,25 +94,36 @@ export default class Calculator extends Component {
           <div className={`${block}__formulas`}>
 
             <div className={`${block}__formulas__header`}>
-              <button className={`${block}--button ${block}--button--icon ${block}__formulas__header__button`}
-                      onClick={this.openModal.bind(this)}>
-                <Icon name="add" size="m"/>
-              </button>
+
+              <Link to='/formulas/create'
+                    className={`${block}--button ${block}--button--icon ${block}__formulas__header__button`}>
+                    <Icon name="add" size="m"/>
+              </Link>
+
 
             </div>
 
             <div className={`${block}__formulas__body`}>
 
-              {this.props.formulas.map(formula =>
-                  <FormulaItem formula={formula} key={formula.id} remove={this.props.actions.removeFormula}/>
+              {formulas.map(formula =>
+                  <div className={`${block}__formula`} key={formula.id}>
+                    <div className={`${block}__formula__name`}>
+                      {formula.name}
+                    </div>
+                    <div className={`${block}__formula__toolbar`}>
+                      <Link to={`/formulas/${formula.id}`} className={`${block}--button ${block}--button--icon ${block}__formula__button`}>
+                        <Icon name="edit" size="s"/>
+                      </Link>
+                      <button className={`${block}--button ${block}--button--icon ${block}__formula__button`}
+                              onClick={this.handleRemoveFormula.bind(this, formula)}>
+                        <Icon name="remove" size="s"/>
+                      </button>
+                    </div>
+                    <ClearFix />
+                  </div>
               )}
 
-
             </div>
-
-
-
-
           </div>
         </div>
       </div>
