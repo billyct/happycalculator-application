@@ -7,6 +7,7 @@ import { getCaretPosition, setSelectRange, getInputSelection, PrefixedEvent } fr
 
 import Icon from '../Icon';
 import ClearFix from '../ClearFix';
+import confirm from '../Confirm';
 
 import './calculator.scss';
 
@@ -52,7 +53,13 @@ export default class Calculator extends Component {
   }
 
   handleRemoveFormula(formula) {
-    this.props.actions.removeFormula(formula);
+    confirm(`Delete the formula "${formula.name}", are you sure?`, {
+      confirmHandler : () => {
+        this.props.actions.removeFormula(formula);
+      }
+    });
+
+
   }
 
   handleUseFormula(formula) {

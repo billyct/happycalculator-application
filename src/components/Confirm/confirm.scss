@@ -1,0 +1,22 @@
+.confirm {
+  padding: 10px;
+
+  &__message {
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0px 0px 10px;
+    border-bottom: 1px solid #B0433B;
+    font-weight: 300;
+    color: #B0433B;
+  }
+
+  &__button {
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}

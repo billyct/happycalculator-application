@@ -32,6 +32,9 @@
 
 
 //COMMON_STYLE_CLASS
+
+
+
 .happy {
   &--controls {
     margin: 0 0 20px 0;
@@ -66,16 +69,22 @@
       background-color: #eeeeee;
     }
 
-    &--primary {
 
-      $color-primary : #56B1A7;
+    @mixin happy-button($color) {
       border: none;
-      background-color: $color-primary;
+      background-color: $color;
       color: #fff;
-
       &:hover {
-        background-color: darken($color-primary, 10%);
+        background-color: darken($color, 10%);
       }
+    }
+
+    &--primary {
+      @include happy-button(#56B1A7);
+    }
+
+    &--second{
+      @include happy-button(#E68C51);
     }
 
     &--radius {
