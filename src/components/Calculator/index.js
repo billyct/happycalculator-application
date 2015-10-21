@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router'
 import happycalculator from 'happycalculator';
+import { HAPPY } from '../../constants';
 
 import Icon from '../Icon';
 import ClearFix from '../ClearFix';
@@ -70,13 +71,13 @@ export default class Calculator extends Component {
       <div className={block}>
 
 
-        <div className={`${block}--controls`}>
+        <div className={`${HAPPY}--controls`}>
           <div className={`${block}__result`}>{this.state.result}</div>
         </div>
 
-        <div className={`${block}--controls`}>
+        <div className={`${HAPPY}--controls`}>
           <input
-            className={`${block}--input`}
+            className={`${HAPPY}--input`}
             onChange={this.handleChange.bind(this)}
             onKeyDown={this.handleSubmitByKeyDown.bind(this)}
             autoFocus={true}
@@ -84,19 +85,19 @@ export default class Calculator extends Component {
             type="text"/>
         </div>
 
-        <div className={`${block}--controls`}>
+        <div className={`${HAPPY}--controls`}>
           <button
-            className={`${block}--button ${block}--button--primary`}
+            className={`${HAPPY}--button ${HAPPY}--button--primary`}
             onClick={this.handleSubmitByClick.bind(this)}>calculate</button>
         </div>
 
-        <div className={`${block}--controls`}>
+        <div className={`${HAPPY}--controls`}>
           <div className={`${block}__formulas`}>
 
             <div className={`${block}__formulas__header`}>
 
               <Link to='/formulas/create'
-                    className={`${block}--button ${block}--button--icon ${block}__formulas__header__button`}>
+                    className={`${HAPPY}--button ${HAPPY}--button--icon ${block}__formulas__header__button`}>
                     <Icon name="add" size="m"/>
               </Link>
 
@@ -111,10 +112,10 @@ export default class Calculator extends Component {
                       {formula.name}
                     </div>
                     <div className={`${block}__formula__toolbar`}>
-                      <Link to={`/formulas/${formula.id}`} className={`${block}--button ${block}--button--icon ${block}__formula__button`}>
+                      <Link to={`/formulas/${formula.id}`} className={`${HAPPY}--button ${HAPPY}--button--icon ${block}__formula__button`}>
                         <Icon name="edit" size="s"/>
                       </Link>
-                      <button className={`${block}--button ${block}--button--icon ${block}__formula__button`}
+                      <button className={`${HAPPY}--button ${HAPPY}--button--icon ${block}__formula__button`}
                               onClick={this.handleRemoveFormula.bind(this, formula)}>
                         <Icon name="remove" size="s"/>
                       </button>

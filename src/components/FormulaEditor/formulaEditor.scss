@@ -1,0 +1,16 @@
+.formulaEditor {
+  &__controls {
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 26px;
+    margin-top: 40px;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 20px;
+  }
+}

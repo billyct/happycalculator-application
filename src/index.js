@@ -20,8 +20,8 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 let store;
 
 const finalCreateStore = compose(
-  devTools(),
-  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+  devTools()
+  //persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);
 
 store = finalCreateStore(reducers);
@@ -34,7 +34,7 @@ React.render(
   <Provider store={store}>
     {() =>
       <Router history={history}>
-        <Route path='/' compnent={App}>
+        <Route path='/' component={App}>
           <Route path='calculator' component={CalculatorPage} />
           <Route path='formulas/create' component={FormulaPage} />
           <Route path='formulas/:id' component={FormulaPage} />

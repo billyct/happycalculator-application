@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import History from 'history';
 
+import { HAPPY } from '../../constants';
+
 import Modal from '../Modal';
 
 
@@ -49,48 +51,47 @@ class FormulaEditor extends Component {
 
 
     let formula = this.state;
-    const block = 'calculator';
-    const modalBlock = 'calculator-modal';
+    const block = 'formulaEditor';
 
 
     return (
-      <Modal isOpen={true}>
-        <div className={`${block}--controls ${modalBlock}__controls`}>
-          <h1 className={`${modalBlock}__title`}>add a formula</h1>
+      <div className={block}>
+        <div className={`${HAPPY}--controls ${block}__controls`}>
+          <h1 className={`${block}__title`}>add a formula</h1>
         </div>
-        <div className={`${block}--controls ${modalBlock}__controls`}>
+        <div className={`${HAPPY}--controls ${block}__controls`}>
           <input
             value={formula.name}
             name='name'
             onChange={this.handleChange.bind(this)}
-            className={`${block}--input ${modalBlock}__input`}
+            className={`${HAPPY}--input ${block}__input`}
             placeholder='Please Input Formula Name'
             type="text"/>
         </div>
 
-        <div className={`${block}--controls ${modalBlock}__controls`}>
+        <div className={`${HAPPY}--controls ${block}__controls`}>
           <input
             onChange={this.handleChange.bind(this)}
             value={formula.content}
             name='content'
-            className={`${block}--input ${modalBlock}__input`}
+            className={`${HAPPY}--input ${block}__input`}
             placeholder='Please Input Formula EXAMPLE: a+2+b'
             type="text"/>
         </div>
 
-        <div className={`${block}--controls ${modalBlock}__controls`}>
+        <div className={`${HAPPY}--controls ${block}__controls`}>
           <input ref="formulaId" type='hidden' value={formula.id} />
-          <button className={`${block}--button ${block}--button--primary`}
+          <button className={`${HAPPY}--button ${HAPPY}--button--primary`}
                   onClick={this.handleSubmit.bind(this)}>
             save
           </button>
 
-          <button className={`${block}--button`}
+          <button className={`${HAPPY}--button`}
                   onClick={this.handleCancel.bind(this)}>
             cancel
           </button>
         </div>
-      </Modal>
+      </div>
     );
   }
 }
