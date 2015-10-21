@@ -1,3 +1,18 @@
+@keyframes calculator-input-transform {
+
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: lighten(#E68C51, 15%);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
 .calculator {
 
 
@@ -6,13 +21,34 @@
 
 
 
-  &__result{
+  &__result {
     font-family: digital;
     font-size: 60px;
     height: 80px;
     line-height: 80px;
 
   }
+
+
+
+  &__input {
+    width: 100%;
+    background-color: transparent;
+    //transition: all 2s;
+
+    &::selection {
+      background-color: #7A4D9E;
+      color: #ffffff;
+    }
+
+    &--selection {
+      &:focus {
+        animation: calculator-input-transform 2s;
+        //outline: #E6BA3E solid 2px;
+      }
+    }
+  }
+
 
   &__formulas {
     border: 1px dashed #ececec;
@@ -32,41 +68,54 @@
 
     }
   }
+}
 
-  &__formula {
+.formula {
 
-    padding: 5px 10px;
-    //clear: both;
-    border-bottom: 1px solid #ececec;
-    box-shadow: 1px 1px 5px #ececec;
-    display: inline-block;
-    margin: 10px;
-
-    &__name {
-      float: left;
-      height: 50px;
-      line-height: 50px;
-      font-size: 20px;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-    &__toolbar {
-      float: right;
+  padding: 5px 10px;
+  //clear: both;
+  border-bottom: 1px solid #ececec;
+  box-shadow: 1px 1px 5px #ececec;
+  display: inline-block;
+  margin: 10px;
 
 
-    }
+  &__header {
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ececec;
+  }
 
-    &__button {
+  &__name {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 
-      margin: 5px 0 0 10px;
-      height: 40px;
-      width: 40px;
-      line-height: 40px;
-      font-size: 20px;
-      padding-top: 2px;
+  &__content {
+
+    opacity: .6;
+    border-left: 1px solid #E68C51;
+    padding-left: 10px;
+    margin: 10px 0;
+
+  }
+
+  &__toolbar {
+    float: right;
 
 
-    }
+  }
+
+  &__button {
+
+    margin: 5px 0 0 10px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    padding-top: 2px;
 
 
   }

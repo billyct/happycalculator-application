@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import History from 'history';
 
-import { HAPPY } from '../../constants';
+import { COMMON_STYLE_CLASS } from '../../constants';
 
 import Modal from '../Modal';
 
@@ -56,37 +56,37 @@ class FormulaEditor extends Component {
 
     return (
       <div className={block}>
-        <div className={`${HAPPY}--controls ${block}__controls`}>
+        <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <h1 className={`${block}__title`}>add a formula</h1>
         </div>
-        <div className={`${HAPPY}--controls ${block}__controls`}>
+        <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <input
             value={formula.name}
             name='name'
             onChange={this.handleChange.bind(this)}
-            className={`${HAPPY}--input ${block}__input`}
+            className={`${COMMON_STYLE_CLASS}--input ${block}__input`}
             placeholder='Please Input Formula Name'
             type="text"/>
         </div>
 
-        <div className={`${HAPPY}--controls ${block}__controls`}>
+        <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <input
             onChange={this.handleChange.bind(this)}
             value={formula.content}
             name='content'
-            className={`${HAPPY}--input ${block}__input`}
+            className={`${COMMON_STYLE_CLASS}--input ${block}__input`}
             placeholder='Please Input Formula EXAMPLE: a+2+b'
             type="text"/>
         </div>
 
-        <div className={`${HAPPY}--controls ${block}__controls`}>
+        <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <input ref="formulaId" type='hidden' value={formula.id} />
-          <button className={`${HAPPY}--button ${HAPPY}--button--primary`}
+          <button className={`${COMMON_STYLE_CLASS}--button ${COMMON_STYLE_CLASS}--button--primary`}
                   onClick={this.handleSubmit.bind(this)}>
             save
           </button>
 
-          <button className={`${HAPPY}--button`}
+          <button className={`${COMMON_STYLE_CLASS}--button`}
                   onClick={this.handleCancel.bind(this)}>
             cancel
           </button>

@@ -30,6 +30,8 @@
   }
 }
 
+
+//COMMON_STYLE_CLASS
 .happy {
   &--controls {
     margin: 0 0 20px 0;
@@ -76,13 +78,16 @@
       }
     }
 
+    &--radius {
+      border-radius: 500px;
+    }
+
     &--icon {
       padding: 0;
       background-color: transparent;
       width: 50px;
       cursor: pointer;
       box-shadow: 1px 1px 1px #ececec;
-      border-radius: 500px;
     }
 
   }

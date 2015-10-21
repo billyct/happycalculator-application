@@ -1,5 +1,6 @@
 import {uuid} from '../helpers';
 import _ from 'lodash';
+import {THE_INIT_FORMULAS} from '../constants';
 
 
 const CREATE = 'hpcapp/formulas/CREATE';
@@ -7,11 +8,7 @@ const UPDATE = 'hpcapp/formulas/UPDATE';
 const REMOVE = 'hpcapp/formulas/REMOVE';
 
 
-export default function reducers(state=[{
-  id : uuid(),
-  name: 'sqrt',
-  content: 'a*a'
-}], action) {
+export default function reducers(state = THE_INIT_FORMULAS, action) {
 
   let stateTemp = _.clone(state);
 

@@ -12,15 +12,21 @@ import App from './containers/App';
 import CalculatorPage from './containers/CalculatorPage';
 import FormulaPage from './containers/FormulaPage';
 
-import { devTools, persistState } from 'redux-devtools'
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import persistStateLocalStorage from 'redux-localstorage';
+//import { devTools, persistState } from 'redux-devtools'
+//import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 
 //store.js
 let store;
 
 const finalCreateStore = compose(
-  devTools()
+  //devTools(),
+  persistStateLocalStorage([
+    'formulas'
+  ], {
+    key : 'happycalculator'
+  })
   //persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);
 
