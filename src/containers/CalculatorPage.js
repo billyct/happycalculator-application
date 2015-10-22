@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as formulaActions from '../reducers/formulas';
 
 import Calculator from '../components/Calculator';
+import confirm from '../components/Confirm';
 
 
 class CalculatorPage extends Component {
@@ -25,10 +26,9 @@ CalculatorPage.propTypes = {
   dispatch : PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    formulas: state.formulas
-  };
-}
 
-export default connect(mapStateToProps)(CalculatorPage);
+export default connect(
+  state => ({
+    formulas: state.formulas
+  })
+)(CalculatorPage);

@@ -77,6 +77,10 @@
       &:hover {
         background-color: darken($color, 10%);
       }
+
+      &:disabled {
+        background-color: lighten($color, 10%);
+      }
     }
 
     &--primary {

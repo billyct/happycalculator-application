@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import { COMMON_STYLE_CLASS } from '../../constants';
 
@@ -66,6 +66,14 @@ Confirm.defaultProps = {
   abortLabel: 'cancel',
   confirmHandler : () => {},
   abortHandler : () => {}
+};
+
+
+Confirm.propTypes = {
+  confirmLabel : PropTypes.string,
+  abortLabel : PropTypes.string,
+  confirmHandler : PropTypes.func,
+  abortHandler : PropTypes.func
 };
 
 

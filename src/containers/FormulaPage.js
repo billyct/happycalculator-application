@@ -36,12 +36,11 @@ FormulaPage.propTypes = {
   dispatch : PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    formulas: state.formulas
-  };
-}
 
-export default connect(mapStateToProps)(FormulaPage);
+export default connect(
+  state => ({
+    formulas: state.formulas
+  })
+)(FormulaPage);
 
 

@@ -2,6 +2,8 @@ import {uuid} from '../helpers';
 import _ from 'lodash';
 import {THE_INIT_FORMULAS} from '../constants';
 
+import confirm from '../components/Confirm';
+
 
 const CREATE = 'hpcapp/formulas/CREATE';
 const UPDATE = 'hpcapp/formulas/UPDATE';
@@ -48,4 +50,15 @@ export function updateFormula(formula) {
 
 export function removeFormula(formula) {
   return {type: REMOVE, data : {formula}};
+}
+
+export function removeFormulaWithConfirm(formula) {
+  //thunk middleware example,nice 如果使用到去操作服务端的话，非常有用
+  return (dispatch) => {
+    confirm(`Delete the formula "${formula.name}", are you sure?`, {
+      confirmHandler : () => {
+        dispatch(removeFormula(formula));
+      }
+    });
+  }
 }

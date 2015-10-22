@@ -43,7 +43,6 @@ class FormulaEditor extends Component {
       actions.createFormula(formula);
     }
 
-
     this.handleCancel();
   }
 
@@ -82,7 +81,8 @@ class FormulaEditor extends Component {
         <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <input ref="formulaId" type='hidden' value={formula.id} />
           <button className={`${COMMON_STYLE_CLASS}--button ${COMMON_STYLE_CLASS}--button--primary`}
-                  onClick={this.handleSubmit.bind(this)}>
+                  onClick={this.handleSubmit.bind(this)}
+                  disabled={!formula.name || !formula.content}>
             save
           </button>
 

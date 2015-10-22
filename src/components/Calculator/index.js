@@ -48,18 +48,15 @@ export default class Calculator extends Component {
 
   handleSubmitByKeyDown(e) {
     if (e.which === 13) {
-      this.calculate(this.state.input)
+      if(!!this.state.input) {
+        this.calculate(this.state.input)
+      }
     }
   }
 
   handleRemoveFormula(formula) {
-    confirm(`Delete the formula "${formula.name}", are you sure?`, {
-      confirmHandler : () => {
-        this.props.actions.removeFormula(formula);
-      }
-    });
-
-
+    //已经将confirm移动到reducer那边
+    this.props.actions.removeFormulaWithConfirm(formula);
   }
 
   handleUseFormula(formula) {
@@ -67,7 +64,6 @@ export default class Calculator extends Component {
     let inputState = this.state.input;
     let field = this.refs.calculatorInput.getDOMNode();
     let pos = getInputSelection(field);
-    console.log(happycalculator.convert(formula.content));
     let params = _(happycalculator.convert(formula.content)).union().filter((param) => {
       //返回变量
       return /[^\d+\+\-\*\/\(\)]/.test(param);
@@ -76,7 +72,6 @@ export default class Calculator extends Component {
     let inputFormula = `${formula.name}(${params})`;
     //将公式插入到input里面
     let newValue = `${inputState.substring(0, pos.start)}${formula.name}(${params})${inputState.substring(pos.end)}`;
-
 
     this.addFormula(formula, params);
 
@@ -193,7 +188,8 @@ export default class Calculator extends Component {
         <div className={`${COMMON_STYLE_CLASS}--controls`}>
           <button
             className={`${COMMON_STYLE_CLASS}--button ${COMMON_STYLE_CLASS}--button--primary`}
-            onClick={this.handleSubmitByClick.bind(this)}>calculate</button>
+            onClick={this.handleSubmitByClick.bind(this)}
+            disabled={!this.state.input}>calculate</button>
         </div>
 
         <div className={`${COMMON_STYLE_CLASS}--controls`}>

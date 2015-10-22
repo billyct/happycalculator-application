@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import svgSprite from 'gulp-svg-sprite';
+import watch from 'gulp-watch';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import config from './webpack.config';
@@ -41,9 +42,18 @@ gulp.task('webpack-dev-server', (callback) => {
   });
 });
 
-gulp.task('default', () => {
-  gulp.src(`${dirs.src}/app.js`)
-    .pipe(gulp.dest(`${dirs.dest}`));
+
+
+gulp.task('image', () => {
+  gulp.src(`${dirs.assets}/images/*`)
+    .pipe(watch(`${dirs.assets}/images/*`))
+    .pipe(gulp.dest(`${dirs.dest}/images`));
+});
+
+gulp.task('font', () => {
+  gulp.src(`${dirs.assets}/fonts/*`)
+    .pipe(watch(`${dirs.assets}/fonts/*`))
+    .pipe(gulp.dest(`${dirs.dest}/fonts`));
 });
 
 
@@ -58,11 +68,13 @@ gulp.task('svg', () => {
       },
       mode : {
         symbol : {
-          dest : 'icon',
+          dest : 'icons',
           sprite : 'sprites.svg'
         }
       }
     }))
     .pipe(gulp.dest(`${dirs.dest}`));
 });
+
+gulp.task('default', ['svg', 'font', 'image', 'webpack-dev-server']);
 

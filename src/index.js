@@ -1,10 +1,13 @@
 import React from 'react';
-import {createStore, compose} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import { Router, Route, Redirect} from 'react-router';
+import { Router, Route, IndexRoute} from 'react-router';
+
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 import createBrowserHistory from 'history/lib/createBrowserHistory'
-let history = createBrowserHistory()
+
 
 import reducers from './reducers';
 
@@ -16,12 +19,23 @@ import persistStateLocalStorage from 'redux-localstorage';
 //import { devTools, persistState } from 'redux-devtools'
 //import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
+//only dev true show logger
+const __DEV__ = true;
+let logger = createLogger({
+  predicate: (getState, action) => __DEV__
+});
+let history = createBrowserHistory()
+
+let middleware = [thunk, logger];
+
+
 
 //store.js
 let store;
 
 const finalCreateStore = compose(
   //devTools(),
+  applyMiddleware(...middleware),
   persistStateLocalStorage([
     'formulas'
   ], {
@@ -41,13 +55,12 @@ React.render(
     {() =>
       <Router history={history}>
         <Route path='/' component={App}>
+          <IndexRoute component={CalculatorPage} />
           <Route path='calculator' component={CalculatorPage} />
           <Route path='formulas/create' component={FormulaPage} />
           <Route path='formulas/:id' component={FormulaPage} />
         </Route>
-        <Redirect from="/" to="/calculator"/>
       </Router>
-
     }
   </Provider>
   ,

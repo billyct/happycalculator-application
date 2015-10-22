@@ -11,7 +11,7 @@ class Modal extends Component {
     const styleContent = {
       width : this.props.width
     };
-    
+
     let style = {
       display: 'none',
     };
