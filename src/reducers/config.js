@@ -4,7 +4,7 @@ import {languages} from '../constants';
 const UPDATE = 'hpcapp/config/UPDATE';
 
 export default function reducers(state = {
-  language : 'zh-cn'
+  language : 'en-us'
 }, action) {
 
   let stateTemp = _.clone(state);
