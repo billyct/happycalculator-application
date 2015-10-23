@@ -22,7 +22,7 @@ module.exports = {
         test: /\.js$/,
         loaders: [
           //'react-hot',
-          'babel?optional[]=runtime'
+          'babel'
         ],
         exclude: /node_modules/,
         include: __dirname,

@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute} from 'react-router';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { createHistory, useBasename } from 'history';
 
 import {LOCAL_STORAGE_KEY} from './constants';
 
@@ -25,7 +25,10 @@ const __DEV__ = true;
 let logger = createLogger({
   predicate: (getState, action) => __DEV__
 });
-let history = createBrowserHistory()
+
+const history = useBasename(createHistory)({
+  basename: '/happycalculator-application'
+})
 
 let middleware = [thunk, logger];
 
