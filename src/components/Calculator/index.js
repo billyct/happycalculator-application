@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import { Link } from 'react-router'
 import happycalculator from 'happycalculator';
 import elementClass from 'element-class';
-import { COMMON_STYLE_CLASS } from '../../constants';
+import { COMMON_STYLE_CLASS, I18n } from '../../constants';
 import { getCaretPosition, setSelectRange, getInputSelection, PrefixedEvent } from '../../helpers';
 
 import Icon from '../Icon';
 import ClearFix from '../ClearFix';
 import confirm from '../Confirm';
+
 
 import './calculator.scss';
 
@@ -161,7 +162,6 @@ export default class Calculator extends Component {
   render() {
 
 
-
     const block = 'calculator';
 
 
@@ -189,7 +189,7 @@ export default class Calculator extends Component {
           <button
             className={`${COMMON_STYLE_CLASS}--button ${COMMON_STYLE_CLASS}--button--primary`}
             onClick={this.handleSubmitByClick.bind(this)}
-            disabled={!this.state.input}>calculate</button>
+            disabled={!this.state.input}>{I18n.get('CALCULATOR__CALCULATE')}</button>
         </div>
 
         <div className={`${COMMON_STYLE_CLASS}--controls`}>

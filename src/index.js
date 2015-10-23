@@ -8,6 +8,7 @@ import createLogger from 'redux-logger';
 
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 
+import {LOCAL_STORAGE_KEY} from './constants';
 
 import reducers from './reducers';
 
@@ -37,9 +38,9 @@ const finalCreateStore = compose(
   //devTools(),
   applyMiddleware(...middleware),
   persistStateLocalStorage([
-    'formulas'
+    'formulas', 'config'
   ], {
-    key : 'happycalculator'
+    key : LOCAL_STORAGE_KEY
   })
   //persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);

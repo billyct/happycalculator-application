@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import History from 'history';
 
-import { COMMON_STYLE_CLASS } from '../../constants';
+import { COMMON_STYLE_CLASS, I18n } from '../../constants';
 
 import Modal from '../Modal';
 
@@ -48,7 +48,6 @@ class FormulaEditor extends Component {
 
   render() {
 
-
     let formula = this.state;
     const block = 'formulaEditor';
 
@@ -56,7 +55,7 @@ class FormulaEditor extends Component {
     return (
       <div className={block}>
         <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
-          <h1 className={`${block}__title`}>add a formula</h1>
+          <h1 className={`${block}__title`}>{I18n.get('FORMULA_EDITOR__ADD_A_FORMULA')}</h1>
         </div>
         <div className={`${COMMON_STYLE_CLASS}--controls ${block}__controls`}>
           <input
@@ -64,7 +63,7 @@ class FormulaEditor extends Component {
             name='name'
             onChange={this.handleChange.bind(this)}
             className={`${COMMON_STYLE_CLASS}--input ${block}__input`}
-            placeholder='Please Input Formula Name'
+            placeholder={I18n.get('FORMULA_EDITOR__NAME_PLACEHOLDER')}
             type="text"/>
         </div>
 
@@ -74,7 +73,7 @@ class FormulaEditor extends Component {
             value={formula.content}
             name='content'
             className={`${COMMON_STYLE_CLASS}--input ${block}__input`}
-            placeholder='Please Input Formula EXAMPLE: a+2+b'
+            placeholder={I18n.get('FORMULA_EDITOR__CONTENT_PLACEHOLDER')}
             type="text"/>
         </div>
 
@@ -83,12 +82,12 @@ class FormulaEditor extends Component {
           <button className={`${COMMON_STYLE_CLASS}--button ${COMMON_STYLE_CLASS}--button--primary`}
                   onClick={this.handleSubmit.bind(this)}
                   disabled={!formula.name || !formula.content}>
-            save
+            {I18n.get('COMMON__SAVE')}
           </button>
 
           <button className={`${COMMON_STYLE_CLASS}--button`}
                   onClick={this.handleCancel.bind(this)}>
-            cancel
+            {I18n.get('COMMON__CANCEL')}
           </button>
         </div>
       </div>

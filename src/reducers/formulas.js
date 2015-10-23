@@ -1,6 +1,6 @@
 import {uuid} from '../helpers';
 import _ from 'lodash';
-import {THE_INIT_FORMULAS} from '../constants';
+import {THE_INIT_FORMULAS, I18n} from '../constants';
 
 import confirm from '../components/Confirm';
 
@@ -55,7 +55,7 @@ export function removeFormula(formula) {
 export function removeFormulaWithConfirm(formula) {
   //thunk middleware example,nice 如果使用到去操作服务端的话，非常有用
   return (dispatch) => {
-    confirm(`Delete the formula "${formula.name}", are you sure?`, {
+    confirm(I18n.get('FORMULA_EDITOR__DELETE_MESSAGE', formula.name), {
       confirmHandler : () => {
         dispatch(removeFormula(formula));
       }

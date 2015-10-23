@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import { COMMON_STYLE_CLASS } from '../../constants';
+import { COMMON_STYLE_CLASS, I18n } from '../../constants';
 
 import Modal from '../Modal';
 import ClearFix from '../ClearFix';
@@ -62,8 +62,8 @@ class Confirm extends Component {
 }
 
 Confirm.defaultProps = {
-  confirmLabel: 'ok',
-  abortLabel: 'cancel',
+  confirmLabel: I18n.get('COMMON__OK'),
+  abortLabel: I18n.get('COMMON__CANCEL'),
   confirmHandler : () => {},
   abortHandler : () => {}
 };
