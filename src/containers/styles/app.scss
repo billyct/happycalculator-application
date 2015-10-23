@@ -1,0 +1,111 @@
+@import "reset";
+@import "variables";
+
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+.app {
+  width: 640px;
+  //padding: 10px;
+  //box-shadow: 1px 1px 5px #eee;
+  margin: 0 auto;
+
+  &__header {
+    padding: 20px 0;
+    border-bottom: 2px dashed #ececec;
+  }
+
+  &__logo {
+    margin-left: -15px;
+    float: left;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    display: table-caption;
+    margin: 20px 0 0 0;
+  }
+
+  &__language {
+    float: right;
+  }
+}
+
+
+//COMMON_STYLE_CLASS
+
+
+
+.happy {
+  &--controls {
+    margin: 0 0 20px 0;
+  }
+
+  &--input {
+    border: none;
+    border-bottom: 1px solid #000000;
+    height: 60px;
+    font-size: 30px;
+    min-width: 200px;
+  }
+
+  &--button {
+
+
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    margin-right: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0 30px;
+    text-transform: uppercase;
+    border: 1px solid #eee;
+    background-color: transparent;
+    display: inline-block;
+    color: #000000;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
+
+    @mixin happy-button($color) {
+      border: none;
+      background-color: $color;
+      color: #fff;
+      &:hover {
+        background-color: darken($color, 10%);
+      }
+
+      &:disabled {
+        background-color: lighten($color, 10%);
+      }
+    }
+
+    &--primary {
+      @include happy-button(#56B1A7);
+    }
+
+    &--second{
+      @include happy-button(#E68C51);
+    }
+
+    &--radius {
+      border-radius: 500px;
+    }
+
+    &--icon {
+      padding: 0;
+      background-color: transparent;
+      width: 50px;
+      cursor: pointer;
+      box-shadow: 1px 1px 1px #ececec;
+    }
+
+  }
+}
