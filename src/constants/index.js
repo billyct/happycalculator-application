@@ -13,6 +13,8 @@ export const THE_INIT_FORMULAS = [
 ];
 
 export {languages, Language};
-
-let lang = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).config.language;
+let lang = 'en-us';
+if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) !== null) {
+  lang = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).config.language;
+}
 export const I18n = new Language(lang);
