@@ -1,5 +1,5 @@
 # happycalculator-application
-a advance calculator that core code with happycalculator,build with react redux [billyct.github.io/happycalculator](http://billyct.github.io/happycalculator)
+a advance calculator that core code with happycalculator,build with react redux [billyct.github.io/happycalculator-application](http://billyct.github.io/happycalculator-application)
 
 ![screenshot](screenshot.png)
 
