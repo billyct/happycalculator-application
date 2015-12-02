@@ -5,8 +5,7 @@ import watch from 'gulp-watch';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import config from './webpack.config';
-
-
+import config_production from './webpack.production.config';
 
 
 const dirs = {
@@ -18,17 +17,22 @@ const dirs = {
 gulp.task('webpack', (callback) => {
   webpack(config, (err, stats) => {
     if(err) throw new gutil.PluginError('webpack', err);
-    gutil.log('[webpack]', stats.toString({
+    gutil.log('[webpack]', stats.toString({}));
+    callback();
+  });
+});
 
-    }));
 
+gulp.task('webpack-p', (callback) => {
+  webpack(config_production, (err, stats) => {
+    if(err) throw new gutil.PluginError('webpack', err);
+    gutil.log('[webpack]', stats.toString({}));
     callback();
   });
 });
 
 gulp.task('webpack-dev-server', (callback) => {
   let compiler = webpack(config);
-
   new WebpackDevServer(compiler, {
     publicPath: config.output.publicPath,
     hot: true,
@@ -46,13 +50,11 @@ gulp.task('webpack-dev-server', (callback) => {
 
 gulp.task('image', () => {
   gulp.src(`${dirs.assets}/images/*`)
-    .pipe(watch(`${dirs.assets}/images/*`))
     .pipe(gulp.dest(`${dirs.dest}/images`));
 });
 
 gulp.task('font', () => {
   gulp.src(`${dirs.assets}/fonts/*`)
-    .pipe(watch(`${dirs.assets}/fonts/*`))
     .pipe(gulp.dest(`${dirs.dest}/fonts`));
 });
 
@@ -77,4 +79,4 @@ gulp.task('svg', () => {
 });
 
 gulp.task('default', ['svg', 'font', 'image', 'webpack-dev-server']);
-
+gulp.task('production', ['svg', 'font', 'image', 'webpack-p']);

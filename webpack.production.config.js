@@ -3,21 +3,24 @@ var webpack = require('webpack');
 
 module.exports = {
 
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './src/index'
-  ],
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js',
     publicPath: '/dist/'
   },
-
-  devtool: 'cheap-module-eval-source-map',
-
+  devtool: 'hidden-sourcemap',
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+
+    //from react-starter
+    new webpack.PrefetchPlugin('react'),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.NoErrorsPlugin(),
   ],
 
   module: {
