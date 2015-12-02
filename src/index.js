@@ -30,6 +30,7 @@ const history = useBasename(createHistory)({
   basename: '/happycalculator-application'
 })
 
+
 let middleware = [thunk, logger];
 
 
